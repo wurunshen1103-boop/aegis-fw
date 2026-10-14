@@ -1,0 +1,19 @@
+[Unit]
+Description=Aegis FW individually authorized deterministic rules
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -I /opt/aegis-fw/entry.py admin auto
+User=root
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/aegis-fw
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW CAP_DAC_READ_SEARCH
+LockPersonality=yes
+RestrictSUIDSGID=yes
+TimeoutStartSec=30

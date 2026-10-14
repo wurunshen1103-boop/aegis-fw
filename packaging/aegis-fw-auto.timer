@@ -1,0 +1,9 @@
+[Unit]
+Description=Check explicitly authorized Aegis FW rules every 15 seconds
+[Timer]
+OnBootSec=30
+OnUnitActiveSec=15
+AccuracySec=1
+Unit=aegis-fw-auto.service
+[Install]
+WantedBy=timers.target
