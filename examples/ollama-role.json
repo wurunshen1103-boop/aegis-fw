@@ -1,0 +1,7 @@
+{
+  "provider": "ollama",
+  "model": "REPLACE_WITH_LOCALLY_INSTALLED_MODEL_TAG",
+  "max_output_tokens": 512,
+  "input_usd_per_million": 0,
+  "output_usd_per_million": 0
+}

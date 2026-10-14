@@ -1,0 +1,14 @@
+{
+  "mode": "shadow",
+  "management_confirmed": false,
+  "management_ports": [22],
+  "protected_cidrs": ["127.0.0.0/8", "::1/128", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16", "fc00::/7", "198.51.100.0/24"],
+  "local_addresses": ["192.0.2.10"],
+  "allowed_signatures": [9900001],
+  "ttl_seconds": 60,
+  "max_event_age": 300,
+  "max_active": 10,
+  "max_per_hour": 20,
+  "confidence_threshold": 0.95,
+  "evidence_path": "/var/log/suricata/eve.json"
+}

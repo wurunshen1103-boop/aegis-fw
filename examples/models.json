@@ -1,0 +1,32 @@
+{
+  "enabled": false,
+  "daily_usd": 0.5,
+  "daily_calls": 100,
+  "roles": {
+    "classifier": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "key_env": "OPENAI_API_KEY",
+      "max_output_tokens": 512,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "reasoning_effort": "none"
+    },
+    "supervisor": {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "key_env": "DEEPSEEK_API_KEY",
+      "max_output_tokens": 512,
+      "input_usd_per_million": 0.3,
+      "output_usd_per_million": 1.2
+    },
+    "reviewer": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "key_env": "ANTHROPIC_API_KEY",
+      "max_output_tokens": 2048,
+      "input_usd_per_million": 2,
+      "output_usd_per_million": 10
+    }
+  }
+}
