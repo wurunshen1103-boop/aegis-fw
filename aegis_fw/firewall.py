@@ -41,7 +41,7 @@ class Nft:
     def call(self, args, script=None):
         r = self.run([NFT]+args, input=script)
         if r.returncode:
-            raise Denied('nft operation failed (code %s)' % r.returncode)
+            raise Denied('nft operation failed (code %s): %s' % (r.returncode, getattr(r, 'stderr', '')[:2000]))
         return r.stdout
 
     def rules(self):
@@ -96,7 +96,7 @@ class Nft:
                  'add set inet '+TABLE+' blocked4 { type ipv4_addr; flags timeout; size 1024; }',
                  'add set inet '+TABLE+' blocked6 { type ipv6_addr; flags timeout; size 1024; }',
                  'add chain inet '+TABLE+' input { type filter hook input priority 10; policy accept; }',
-                 'add chain inet '+TABLE+' dynamic',
+                 'add chain inet '+TABLE+' "dynamic"',
                  'add rule inet '+TABLE+' input iifname "lo" return',
                  'add rule inet '+TABLE+' input ct state established,related return',
                  'add rule inet '+TABLE+' input tcp dport { '+ports+' } return',
@@ -104,9 +104,9 @@ class Nft:
         for cidr in p['protected_cidrs']:
             n = ipaddress.ip_network(cidr)
             lines.append('add rule inet '+TABLE+' input '+('ip' if n.version == 4 else 'ip6')+' saddr '+str(n)+' return')
-        lines += ['add rule inet '+TABLE+' input jump dynamic',
-                  'add rule inet '+TABLE+' dynamic ip saddr @blocked4 counter drop',
-                  'add rule inet '+TABLE+' dynamic ip6 saddr @blocked6 counter drop']
+        lines += ['add rule inet '+TABLE+' input jump "dynamic"',
+                  'add rule inet '+TABLE+' "dynamic" ip saddr @blocked4 counter drop',
+                  'add rule inet '+TABLE+' "dynamic" ip6 saddr @blocked6 counter drop']
         return '\n'.join(lines)+'\n'
 
     def transaction(self, script):
