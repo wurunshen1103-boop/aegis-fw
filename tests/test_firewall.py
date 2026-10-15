@@ -20,7 +20,7 @@ class FirewallTests(unittest.TestCase):
         with self.assertRaises(ValueError):Nft(lambda *a: self.fail('must not run')).add('8.8.4.4;sh',60)
     def test_protect_order(self):
         text=Nft().init_script(policy(),'test')
-        self.assertLess(text.index('tcp dport'),text.index('jump "dynamic"'))
+        self.assertLess(text.index('tcp dport'),text.index('jump aegis_dynamic'))
         self.assertIn('ct state established,related return',text)
         self.assertIn('policy accept',text);self.assertNotIn('flush',text)
     def test_manager_rules(self):
