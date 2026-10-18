@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "assets": [
+    {"ip": "192.0.2.10", "service": "tcp:22", "name": "替换为授权 Linux 主机", "criticality": "unknown"}
+  ],
+  "rules": [],
+  "changes": [],
+  "telemetry": {
+    "heartbeat": "not_collected",
+    "identity": "not_collected",
+    "health": "not_collected",
+    "normal_traffic": "not_collected"
+  }
+}

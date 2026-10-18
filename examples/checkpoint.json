@@ -1,0 +1,16 @@
+{
+  "agent_instance": "timeline-1",
+  "observed_evidence_ids": [],
+  "hypotheses": [
+    {
+      "text": "待核对：不同日期的异常是否涉及同一业务目标；尚未证明属于同一攻击。",
+      "evidence_ids": []
+    }
+  ],
+  "questions": [
+    {
+      "text": "是否有对应时段的发布、维护或促销记录？",
+      "evidence_ids": []
+    }
+  ]
+}

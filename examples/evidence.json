@@ -1,0 +1,26 @@
+{
+  "history_days": 30,
+  "max_batch_records": 20000,
+  "max_batch_bytes": 4194304,
+  "max_line_bytes": 65536,
+  "max_events": 200000,
+  "max_incidents": 10000,
+  "max_receipts": 50000,
+  "max_checkpoints_per_incident": 100,
+  "max_database_bytes": 536870912,
+  "max_query_rows": 200,
+  "max_sql_steps": 2000000,
+  "future_tolerance_seconds": 5,
+  "late_after_seconds": 300,
+  "windows_seconds": [10, 60, 300, 3600, 86400, 604800, 2592000],
+  "expected_sensors": ["suricata-local"],
+  "context_max_bytes": 32768,
+  "instance_counts": {
+    "traffic": 2,
+    "timeline": 1,
+    "business": 1,
+    "critic": 1,
+    "lead": 1
+  },
+  "max_instances": 8
+}

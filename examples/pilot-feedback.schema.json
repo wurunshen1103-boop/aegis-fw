@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Aegis anonymous pilot feedback record",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "team_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "reviewer_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "case_code": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "case_group": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "code_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "model_profile": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "context_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "is_template": {
+      "type": "boolean"
+    },
+    "source_type": {
+      "enum": [
+        "authorized_historical_case",
+        "synthetic_demo",
+        null
+      ]
+    },
+    "method": {
+      "enum": [
+        "manual",
+        "facts_only",
+        "model_assisted",
+        null
+      ]
+    },
+    "presentation_order": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "attempt_result": {
+      "enum": [
+        "completed",
+        "abandoned",
+        "timed_out",
+        null
+      ]
+    },
+    "active_review_seconds": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "human_review_completed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "material_corrections": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "correction_notes": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      }
+    },
+    "useful_evidence_notes": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      }
+    },
+    "had_followup_case_opportunity": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "used_on_another_case": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "willingness_to_pay": {
+      "enum": [
+        "yes",
+        "no",
+        "not_asked"
+      ]
+    },
+    "conditions_for_continued_use": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      }
+    }
+  },
+  "required": [
+    "team_code",
+    "reviewer_code",
+    "case_code",
+    "case_group",
+    "code_version",
+    "model_profile",
+    "context_hash",
+    "schema_version",
+    "is_template",
+    "source_type",
+    "method",
+    "presentation_order",
+    "attempt_result",
+    "active_review_seconds",
+    "human_review_completed",
+    "material_corrections",
+    "correction_notes",
+    "useful_evidence_notes",
+    "had_followup_case_opportunity",
+    "used_on_another_case",
+    "willingness_to_pay",
+    "conditions_for_continued_use"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "is_template": {
+            "const": false
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "team_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "reviewer_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "case_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "case_group": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "code_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        }
+      }
+    }
+  ]
+}
