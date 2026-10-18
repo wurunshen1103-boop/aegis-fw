@@ -42,12 +42,18 @@ def main():
     sub.add_parser('audit')
     sub.add_parser('list')
     sub.add_parser('doctor')
+    from .evidence_cli import configure as configure_evidence
+    configure_evidence(sub.add_parser('evidence',help='local historical evidence and bounded investigation context'))
     ing = sub.add_parser('ingest'); ing.add_argument('file')
     rev = sub.add_parser('review'); rev.add_argument('id'); rev.add_argument('--models', default='examples/models.json')
     exp = sub.add_parser('export'); exp.add_argument('id')
     args = ap.parse_args()
     try:
         p = validate_policy(json.loads(Path(args.policy).read_text()))
+        if args.command == 'evidence':
+            from .evidence_cli import run as run_evidence
+            run_evidence(args,p)
+            return
         if args.command == 'simulate':
             for flow in (1001, 1002):
                 print(canonical({'event_type': 'alert', 'timestamp': datetime.now(timezone.utc).isoformat(),
