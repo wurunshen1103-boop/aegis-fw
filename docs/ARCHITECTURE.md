@@ -60,3 +60,7 @@ nftables 一个 base chain 的 accept/return 不会跳过其他 base chains 的 
 ## 受限自动模式
 
 root 管理员逐条 signature 授权，期限 ≤3600 秒；动作 TTL、保护名单、目的本机地址、两条不同 flow、事件新鲜度和全局速率上限不能通过授权绕过。高风险 severity=1 绝不自动执行。定时器仅持有已授予规则，不会自动续期。重启不恢复集合，不自动重新初始化表；管理员重新检查后决定。
+
+## 长期证据层预览
+
+2026-10-15 增加了独立的本地历史证据和调查接口，见 [长期证据与多时间窗口架构](TEMPORAL_ARCHITECTURE.md)。上文的模型 Council 与 root 执行器权限不变；新的模型多实例计划不等于已运行的 Agent。

@@ -112,3 +112,7 @@ sudo /usr/bin/python3 -I /opt/aegis-fw/uninstall.py --confirm-remove-software
 配置 `/etc/aegis-fw`、root 审计/状态 `/var/lib/aegis-fw`、原始安全日志、观察数据库不会删除。保留以便审计；需要清理时单独审阅这些目录。不会卸载系统 nftables、修改系统服务或删除其他规则。
 
 主机重启后 nft 临时表通常消失而本地状态保留。MVP 此时故意拒绝自动重建。先核对 live ruleset，然后归档旧 `state.json` 以保留审计，再明确 init；不要自动持久化当前动态集合到 `/etc/nftables.conf`。
+
+## 长期证据架构预览
+
+新离线安装器会复制历史证据模块和 `/etc/aegis-fw/evidence.json`。历史数据库由普通用户创建在用户控制的私有目录，不能放入 root 的状态目录或与旧观察数据库共用文件。安装后可使用 `aegis-fw --policy /etc/aegis-fw/policy.json evidence --config /etc/aegis-fw/evidence.json --store ./history.sqlite ...`。详见 [架构与命令](TEMPORAL_ARCHITECTURE.md)。此预览没有运行安装或测试验证。
